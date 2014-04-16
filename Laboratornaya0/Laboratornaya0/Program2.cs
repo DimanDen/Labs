@@ -11,7 +11,6 @@ namespace Objects1
         void Draw(); //method to display the objects
     }
 
-
     class Point
     {
         public int x; //coordinates of points
@@ -71,7 +70,7 @@ namespace Objects1
 
 
 
-    class Text : IDraw
+    class Text: IDraw   
     {
         protected Point Point1;
         private String text;
@@ -83,7 +82,7 @@ namespace Objects1
 
         public void Draw()
         {
-            Console.SetCursorPosition(Point1.x, 0); //move the cursor to this coordinates
+            Console.SetCursorPosition(0, Point1.x); //move the cursor to this coordinates
             Console.Write("Text: \n{0}", text); //output a text
         }
     }
@@ -91,7 +90,7 @@ namespace Objects1
 
     class DrawObjects
     {         
-        public static void Iniciallization(ref Polygon[] arrayofobjects) //Method for work with object
+        public static void Iniciallization(ref IDraw[] arrayofobjects) //Method for work with object
         {
             for (int i = 0; i < arrayofobjects.Length; i++)
             {             
@@ -100,24 +99,25 @@ namespace Objects1
             }
         }
     }
-
+    
     class Program
     {
         static Point[] Points1 = { new Point(11, 22), new Point(33, 44), new Point(55, 66) }; //Initialize an array of points
         static Point[] Points = { new Point(1, 2), new Point(3, 4), new Point(5, 6), new Point(7, 8), new Point(9, 10) };
-        static Point Point1 = new Point(10,0);
+        static Point Point1 = new Point(12,0);
 
         static void Main()
         {
-            Polygon[] arrayofobjects = { new Polygon(Points), new Triangle(Points1)};//, new Text(Point1, "Give me life, give me love \nScarlet angel from above \nNot so low, not so high \nKeep it perfectly disguised") };
-
+            IDraw[] arrayofobjects = { new Polygon(Points), new Triangle(Points1), new Text(Point1, "Give me life, give me love \nScarlet angel from above \nNot so low, not so high \nKeep it perfectly disguised") };
+            
             Console.WriteLine("Вывод в методе мэйн");
-            foreach (Polygon p in arrayofobjects)
+            foreach (IDraw p in arrayofobjects)
             {
                 p.Draw();
                 Console.WriteLine();
             }
 
+            Console.WriteLine();
             Console.WriteLine("Через метод вывода массива на экран");
             DrawObjects.Iniciallization(ref arrayofobjects);
             Console.ReadKey();
