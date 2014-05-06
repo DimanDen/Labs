@@ -26,13 +26,12 @@ namespace Objects1
     class Polygon : IDraw
     {
         protected Point[] Points; //array of points
-        protected int heaps; //the number of vertices
         public int Heaps //properties, which specifies the conditions the number of vertices
         {
             get
             {
-                heaps = Points.Length;
-                return heaps; 
+                Heaps = Points.Length;
+                return Heaps; 
             }
             set
             {   }
@@ -88,7 +87,7 @@ namespace Objects1
     }
 
 
-    class DrawObjects
+    class OutputManagement
     {         
         public static void Iniciallization(IDraw[] arrayofobjects) //Method for work with object
         {
@@ -104,14 +103,14 @@ namespace Objects1
     {
         static void Main()
         {
-            Point[] Points1 = { new Point(11, 22), new Point(33, 44), new Point(55, 66) }; //Initialize an array of points
+            Point[] Points1 = { new Point(11, 22), new Point(33, 44), new Point(55, 66)}; //Initialize an array of points
             Point[] Points = { new Point(1, 2), new Point(3, 4), new Point(5, 6), new Point(7, 8), new Point(9, 10) };
             Point Point1 = new Point(12, 0);
 
             IDraw[] arrayofobjects = { new Polygon(Points), new Triangle(Points1), new Text(Point1, "Give me life, give me love \nScarlet angel from above \nNot so low, not so high \nKeep it perfectly disguised") };
             
             Console.WriteLine("Через метод вывода массива на экран:");
-            DrawObjects.Iniciallization(arrayofobjects);
+            OutputManagement.Iniciallization(arrayofobjects);
             Console.ReadKey();
         }
     }

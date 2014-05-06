@@ -28,27 +28,24 @@ namespace Trajectory
         }
     }
 
-    class SecondOrderCurve : Trajectory  //Кривая второго порядка, имеет вид: a{11}x^2 + a{22}y^2 + 2a{12}xy + 2a{13}x + 2a{23}y + a{33}=0,
+    class Polynomial : Trajectory  //Многочлен n-ого порядка. Имеет вид c0 + c1*x + c2*(x^2) + ...
     {
-        protected double a11; //параметры для задания кривой второго порядка, они могут иметь разные значения, взависимости от функции
-        protected double a22;
-        protected double a12;
-        protected double a13;
-        protected double a23;
-        protected double a33;
-
-        public void Function() //В данном методе находим значения функции
+        protected double[] coefficients; //В массиве содержатся коэффициенты для определение многочлена той или иной степени
+        //В данном методе определяется уравнение для нахождения значений фукнции. 
+        //Например: если в массиве коэффициентов будет три элемента, значит степень многочлена будет второй. 
+        //Следовательно мы имеем дело с параболой
+        public void Function() 
         {
         }
 
-        public void Terms() //Указываем условия для существования кривой второго порядка
+        public void Terms() //Указываем условия для существования того или иного многочлена. Например: Коэффициенты должны быть действительными числами.
         {
         }
     }
 
 
     class Parabola //Парабола
-          : SecondOrderCurve
+          : Polynomial
     {
         public void Terms() // В этом методе задаются условия определения функции. 
         {
@@ -56,12 +53,11 @@ namespace Trajectory
     }
 
     class straight  //Прямая
-        : SecondOrderCurve
+        : Polynomial
     {
         public void Terms() // В этом методе задаются условия определения функции. 
         {
         }
-
     }
 
     class Сollision //Столкновение
@@ -70,7 +66,7 @@ namespace Trajectory
         public int y;
     }
 
-    class TranscendentalCurves : Trajectory  // рансцендентные кривые
+    class TranscendentalCurves : Trajectory  // Трансцендентные кривые
     {
         protected double b; // свободный член для синусоиды
 
