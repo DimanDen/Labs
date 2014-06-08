@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace Trajectory
 {
-    interface IFunction //Метод определения значения функции
-    {
-        void Function();
-    }
-
-    class Point
+    public class Point
     {
         public double x; //coordinates of points
         public double y;
@@ -22,13 +17,9 @@ namespace Trajectory
         }
     }
 
-    public class Trajectory : IFunction // Траектория
+    public abstract class Trajectory // Траектория
     {
-        static public double[] x; //координаты точек на оси асцисс
-        static public double[] y; //координаты точек на оси ординат
-        public void Function()
-        {
-        }
+        public abstract void Function(Point[] Points, double[] coefficients);
     }
 
     class Polynomial : Trajectory  //Многочлен n-ого порядка. Имеет вид c0 + c1*x + c2*(x^2) + ...
@@ -37,9 +28,18 @@ namespace Trajectory
         //В данном методе определяется уравнение для нахождения значений фукнции. 
         //Например: если в массиве коэффициентов будет три элемента, значит степень многочлена будет второй. 
         //Следовательно мы имеем дело с параболой
+        public int NumberOfCoefficients //properties, which specifies the conditions the number ofcoefficients
+        {
+            get
+            {
+                NumberOfCoefficients = coefficients.Length;
+                return NumberOfCoefficients;
+            }
+            set
+            { }
+        }
 
-        public Point[] Points1; //Координаты точек движущегося объекта
-        public void Function() 
+        public override void Function(Point[] Points, double[] coefficients)
         {
         }
     }
@@ -47,26 +47,30 @@ namespace Trajectory
 
     class Parabola : Polynomial //Парабола         
     {
-        public Parabola(double[] coefficients) 
+        public Parabola(double[] coefficients) //constructor with a pointer to the object
         {
-            this.coefficients = coefficients;
+            if (NumberOfCoefficients == 3)
+            {
+                this.coefficients = coefficients;
+            }
         }
     }
 
     class Straight : Polynomial  //Прямая   
     {
-        public Straight(double[] coefficients) 
+        public Straight(double[] coefficients) //constructor with a pointer to the object
         {
-            this.coefficients = coefficients;
+            if (NumberOfCoefficients == 2)
+            {
+                this.coefficients = coefficients;
+            }
         }
     }
 
     class TranscendentalCurves : Trajectory  // Трансцендентные кривые
     {
-        protected double b; // свободный член для синусоиды
-
-        public Point[] Points1; //Координаты точек движущегося объекта
-        public void Function() //В данном методе находим значения функции. Функция уже будет выглядить как многочлен.
+        protected double SinusoidFreeTerm; // свободный член для синусоиды
+        public override void Function(Point[] Points, double[] coefficients) //В данном методе находим значения функции. Функция уже будет выглядить как многочлен.
         {
         }
     }
@@ -74,16 +78,16 @@ namespace Trajectory
     class Sinusoid //Синусоида
         : TranscendentalCurves
     {
-        public Sinusoid(double b) 
+        public Sinusoid(double SinusoidFreeTerm) //constructor with a pointer to the object
         {
-            this.b = b;
+            this.SinusoidFreeTerm = SinusoidFreeTerm;
         }
     }
 
     class Collision //Столкновение
     {
-        public Point[] PointsCollision; //Координаты посторонних предметов
-        public void ChechCollision(Point[] Points1) //Проверка на столкновение
+        public Point[] PointsCollision;
+        public void ChechCollision(Point[] Points1)
         {
         }
 
