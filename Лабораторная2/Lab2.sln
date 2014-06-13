@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{D2C85BDD-6DDF-4F8D-BF2C-2675BBC06CCE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2", "WindowsFormsApplication1\Lab2.csproj", "{D2C85BDD-6DDF-4F8D-BF2C-2675BBC06CCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{3667BDA6-E4E1-4D7A-8BFD-AB439F67BD11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{D2C85BDD-6DDF-4F8D-BF2C-2675BBC06CCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2C85BDD-6DDF-4F8D-BF2C-2675BBC06CCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2C85BDD-6DDF-4F8D-BF2C-2675BBC06CCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3667BDA6-E4E1-4D7A-8BFD-AB439F67BD11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3667BDA6-E4E1-4D7A-8BFD-AB439F67BD11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3667BDA6-E4E1-4D7A-8BFD-AB439F67BD11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3667BDA6-E4E1-4D7A-8BFD-AB439F67BD11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
