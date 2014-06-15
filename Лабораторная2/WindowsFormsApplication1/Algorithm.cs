@@ -37,12 +37,32 @@ namespace Lab2
     /// </summary>
     public abstract class Trajectory 
     {
+        bool flag = false;
+        public Point[] Points;
+        public Point[] PointsCollision;
         /// <summary>
         /// Метод, вычисляющий значение функции
         /// </summary>
         /// <param name="Points"></param>
         /// <param name="Okno"></param>
-        public abstract void Function(Point[] Points, Form1 Okno);
+        public abstract void BuiltPoints(decimal[] x);
+        public Point[] GetPoints(decimal[] x)
+        {
+            return Points;
+        }
+        public void Collision(Point[] Points)
+        { 
+            for (int i = 0; i < Points.GetLength(0); i++)
+            {
+                for (int j = 0; j < PointsCollision.GetLength(0); j++)
+                {
+                    if (Points[i].x == PointsCollision[j].x && Points[i].y == PointsCollision[j].y)
+                    {
+                        flag = true;
+                    }
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -50,11 +70,6 @@ namespace Lab2
     /// </summary>
     public class Polynomial : Trajectory 
     {
-        /// <summary>
-        /// Вспомогательная переменная, определяющая, какой график необходимо строить
-        /// </summary>
-        public int NumberOfSeries;
-
         /// <summary>
         /// Массив, содержащий в себе коэффициенты, стоящие перед аргументами разных степеней
         /// </summary>
@@ -65,15 +80,14 @@ namespace Lab2
         /// </summary>
         /// <param name="Points"></param>
         /// <param name="Okno"></param>
-        public override void Function(Point[] Points, Form1 Okno)
+        public override void BuiltPoints(decimal[] x)
         {
-            for (int i = 0; i < Points.Length; i++)
+            for (int i = 0; i < x.Length; i++)
             {
                 for (int j = 0; j < coefficients.Length; j++)
                 {
                     Points[i].y = Points[i].y + coefficients[j] * (decimal)Math.Pow((double)Points[i].x, j);
                 }
-                Okno.chart1.Series[NumberOfSeries].Points.AddXY(Points[i].x, Points[i].y);
             }
         }
     }
@@ -83,16 +97,15 @@ namespace Lab2
     /// </summary>
     public class Parabola : Polynomial       
     {
-        public Parabola(decimal[] coefficients, int NumberOfSeries) 
+        public Parabola(decimal[] coefficients) 
         {
             if (coefficients.Length == 3)
             {
                 this.coefficients = coefficients;
-                this.NumberOfSeries = NumberOfSeries;
             }
         }
     }
-
+/*
     /// <summary>
     /// Класс, описывающий траекторию в виде прямой.
     /// </summary>
@@ -157,28 +170,6 @@ namespace Lab2
     /// </summary>
     public class Collision
     {
-        /// <summary>
-        /// Массив точек, через которые может пройти траетория
-        /// </summary>
-        public Point[] PointsCollision = { new Point(0.123m, 1.291387m), new Point(0, 15), new Point(3, 9), new Point(1.45m, 3.91m), new Point(2.789m, 6.578m) };
-        /// <summary>
-        /// Метод, в котором проверяется прошла ли траектория через какие-нибудь точки из массива заданных
-        /// </summary>
-        /// <param name="Points"></param>
-        /// <param name="Okno"></param>
-        public void ChechCollision(Point[] Points, Form1 Okno)
-        {
-            for (int i = 0; i < Points.GetLength(0); i++)
-            {
-                for (int j = 0; j < PointsCollision.GetLength(0); j++)
-                {
-                    if (Points[i].x == PointsCollision[j].x && Points[i].y == PointsCollision[j].y)
-                    {
-                       Okno.textboxCollision.AppendText("\r\n(" + PointsCollision[j].x + "; " + PointsCollision[j].y + ")");
-                    }
-                    Okno.chart1.Series[3].Points.AddXY(PointsCollision[j].x, PointsCollision[j].y);
-                }
-            }
-        }
-    }
+
+    }*/
 }
