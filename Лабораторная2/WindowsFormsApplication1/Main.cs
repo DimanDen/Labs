@@ -16,55 +16,55 @@ namespace Lab2
         {
             InitializeComponent();
         }
-        public int NumberOfSeries0 = 0, NumberOfSeries1 = 1, NumberOfSeries2 = 2;
         private void method1(object sender, EventArgs e)
         {
-            decimal[] x1 = {0, 1, 2};
             buttonStart.Click -= method1;
-            Polynomial p = new Polynomial();
 
-            Point[] Points1 = { new Point(-2.789m, 0), new Point(-1.456m, 0), new Point(-0.123m, 0), new Point(0, 0), new Point(0.123m, 0), new Point(1.456m, 0), new Point(2.789m, 0) };
+            decimal[] x1 = { -2, -1, 0, 1, 2 };
             decimal[] coefficients1 = new decimal[3] { 1, 2, 3 };
-            Point[] Points2 = { new Point(-2.789m, 0), new Point(-1.456m, 0), new Point(-0.123m, 0), new Point(0, 0), new Point(0.123m, 0), new Point(1.456m, 0), new Point(2.789m, 0) };
             decimal[] coefficients2 = new decimal[2] { 1, 2 };
-            Point[] Points3 = { new Point(-2.789m, 0), new Point(-1.456m, 0), new Point(-0.123m, 0), new Point(0, 0), new Point(0.123m, 0), new Point(1.456m, 0), new Point(2.789m, 0) };
             decimal SinusoidFreeTerm1 = 5.0m;
 
-            Parabola parabola = new Parabola(coefficients1);
-            parabola.BuiltPoints(x1);
-
-           /* Straight straight = new Straight(coefficients2, NumberOfSeries1);
-            straight.Function(Points2, (Form1)Form1.ActiveForm);
-
-            Sinusoid sinusoid = new Sinusoid(SinusoidFreeTerm1, NumberOfSeries2);
-            sinusoid.Function(Points3, (Form1)Form1.ActiveForm);
-
-            Collision c = new Collision();
-            c.ChechCollision(Points1, (Form1)Form1.ActiveForm);
-            c.ChechCollision(Points2, (Form1)Form1.ActiveForm);
-            c.ChechCollision(Points3, (Form1)Form1.ActiveForm);*/
-
-/*            string parabolal = "";
+            string parabolal = "";
             string straightl = "";
             string sinusoidl = "";
 
-            foreach (Point p in Points1)
+            Parabola parabola = new Parabola(coefficients1, true);
+            parabola.CreatePoints(x1);
+            parabola.GetPoints(x1);
+            parabola.BuiltPoints(x1);
+            foreach (Point p in parabola.Points)
             {
+                chart1.Series[0].Points.AddXY(p.x, p.y);
                 parabolal += "\r\n" + p.ToString();
             }
+            parabola.Collision(parabola.Points);
             textBoxParabola.Text = "Парабола\n\r" + parabolal;
 
-            foreach (Point p in Points2)
+            Straight straight = new Straight(coefficients2, true);
+            straight.CreatePoints(x1);
+            straight.GetPoints(x1);
+            straight.BuiltPoints(x1);
+            foreach (Point s in straight.Points)
             {
-                straightl += "\r\n" + p.ToString();
+                chart1.Series[1].Points.AddXY(s.x, s.y);
+                straightl += "\r\n" + s.ToString();
             }
+            straight.Collision(straight.Points);
             textBoxStraight.Text = "Прямая\n\r" + straightl;
 
-            foreach (Point p in Points3)
+            Sinusoid sinusoid = new Sinusoid(SinusoidFreeTerm1, false);
+            sinusoid.CreatePoints(x1);
+            sinusoid.GetPoints(x1);
+            sinusoid.BuiltPoints(x1);
+            foreach (Point sin in sinusoid.Points)
             {
-                sinusoidl += "\r\n" + p.ToString();
+                chart1.Series[2].Points.AddXY(sin.x, sin.y);
+                sinusoidl += "\r\n" + sin.ToString();
             }
-            textBoxSinusoid.Text = "Синусойда\n\r" + sinusoidl;*/
+            sinusoid.Collision(sinusoid.Points);
+            textBoxSinusoid.Text = "Синусойда\n\r" + sinusoidl;
+            
         }
     }
 }
