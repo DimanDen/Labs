@@ -11,6 +11,10 @@ namespace Lab2
     /// </summary>
     public class TranscendentalCurves : Trajectory
     {
+        /// <summary>
+        /// Свободный член в формул подсчета значения функции синусойды
+        /// </summary>
+        public decimal SinusoidFreeTerm;
         public override Point[] BuiltPoints(decimal[] x)
         {
             for (int i = 0; i < x.Length; i++)
