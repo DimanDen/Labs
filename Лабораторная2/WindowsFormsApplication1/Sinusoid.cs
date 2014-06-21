@@ -12,10 +12,11 @@ namespace Lab2
     public class Sinusoid
         : TranscendentalCurves
     {
-        public Sinusoid(decimal SinusoidFreeTerm, Point[] Points)
+        public Sinusoid(decimal SinusoidFreeTerm, Point[] Points, decimal[] coefficients)
         {
             this.SinusoidFreeTerm = SinusoidFreeTerm;
             this.Points = Points;
+            this.coefficients = coefficients;
         }
     }
 }

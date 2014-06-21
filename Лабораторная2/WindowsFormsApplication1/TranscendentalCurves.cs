@@ -19,8 +19,11 @@ namespace Lab2
         {
             for (int i = 0; i < x.Length; i++)
             {
-                Points[i].x = x[i];
-                Points[i].y = (decimal)Math.Sin((double)Points[i].x) + SinusoidFreeTerm;
+                for (int j = 0; j < coefficients.Length; j++)
+                {
+                    Points[i].x = x[i];
+                    Points[i].y = coefficients[j] * (decimal)Math.Sin((double)Points[i].x) + SinusoidFreeTerm;
+                }
             }
             return Points;
         }

@@ -26,6 +26,7 @@ namespace Lab2
             decimal[] x1 = { -2, -1, 0, 1, 2 };
             decimal[] coefficients1 = new decimal[3] { 1, 2, 3 };
             decimal[] coefficients2 = new decimal[2] { 1, 2 };
+            decimal[] coefficients3 = new decimal[1] { 1 };
             decimal SinusoidFreeTerm1 = 5.0m;
 
             string parabolal = "";
@@ -52,7 +53,7 @@ namespace Lab2
             }
             textBoxStraight.Text = "Прямая\n\r" + straightl;
 
-            Sinusoid sinusoid = new Sinusoid(SinusoidFreeTerm1, Points1);
+            Sinusoid sinusoid = new Sinusoid(SinusoidFreeTerm1, Points1, coefficients3);
             sinusoid.CreatePoints(x1);
             foreach (Point sin in sinusoid.Points)
             {
