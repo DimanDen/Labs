@@ -40,14 +40,6 @@ namespace Lab2
     public abstract class Trajectory
     {
         /// <summary>
-        /// Вспомогательная переменная, с помощью который определяется метод создания точек
-        /// </summary>
-        public bool ParabolaOrStraight;
-        /// <summary>
-        /// Переменная, определяющая 
-        /// </summary>
-        bool CheckCollision = false;
-        /// <summary>
         /// Коэффициенты, используемые в подсчете значения функции с помощью многочлена
         /// </summary>
         public decimal[] coefficients;
@@ -55,12 +47,7 @@ namespace Lab2
         /// Свободный член в формул подсчета значения функции синусойды
         /// </summary>
         public decimal SinusoidFreeTerm;
-        public Point[] Points = { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) };
-        /// <summary>
-        /// Точки, пересечение с которыми будет проверяться
-        /// </summary>
-        public Point[] PointsCollision = { new Point(-1, 2), new Point(-123, 1243) };
-
+        public Point[] Points;
         /// <summary>
         /// Метод построения точек
         /// </summary>
@@ -73,51 +60,24 @@ namespace Lab2
         /// <param name="x"></param>
         public void CreatePoints(decimal[] x)
         {
-            if (ParabolaOrStraight == true)
-            {
-                for (int i = 0; i < x.Length; i++)
-                {
-                    for (int j = 0; j < coefficients.Length; j++)
-                    {
-                        Points[i].x = x[i];
-                        Points[i].y = Points[i].y + coefficients[j] * (decimal)Math.Pow((double)Points[i].x, j);
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < x.Length; i++)
-                {
-                    Points[i].x = x[i];
-                    Points[i].y = (decimal)Math.Sin((double)Points[i].x) + SinusoidFreeTerm;
-                }
-            }
+            Points = BuiltPoints(x);
         }
         /// <summary>
         /// Метод, который позволяет получить точки
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
-        public decimal[] GetPoints(decimal[] x)
+        public Point[] GetPoints(decimal[] x)
         {
-            return x;
+            return BuiltPoints(x);
         }
         /// <summary>
         /// Метод, в котором проверяется принадлежит ли точка траектории
         /// </summary>
         /// <param name="Points"></param>
-        public void Collision(Point[] Points)
+        public decimal Collision(Point testPoint)
         {
-            for (int i = 0; i < Points.GetLength(0); i++)
-            {
-                for (int j = 0; j < PointsCollision.GetLength(0); j++)
-                {
-                    if (Points[i].x == PointsCollision[j].x && Points[i].y == PointsCollision[j].y)
-                    {
-                        CheckCollision = true;
-                    }
-                }
-            }
+            return BuiltPoints(new decimal[] {testPoint.x})[0].y;// == testPoint.y;
         }
     }
 
@@ -128,6 +88,14 @@ namespace Lab2
     {
         public override Point[] BuiltPoints(decimal[] x)
         {
+            for (int i = 0; i < x.Length; i++)
+                {
+                    for (int j = 0; j < coefficients.Length; j++)
+                    {
+                        Points[i].x = x[i];
+                        Points[i].y = Points[i].y + coefficients[j] * (decimal)Math.Pow((double)Points[i].x, j);
+                    }
+                }
             return Points;
         }
     }
@@ -137,12 +105,12 @@ namespace Lab2
     /// </summary>
     public class Parabola : Polynomial
     {
-        public Parabola(decimal[] coefficients, bool ParabolaOrStraight)
+        public Parabola(decimal[] coefficients, Point[] Points)
         {
             if (coefficients.Length == 3)
             {
                 this.coefficients = coefficients;
-                this.ParabolaOrStraight = ParabolaOrStraight;
+                this.Points = Points;
             }
         }
     }
@@ -152,12 +120,12 @@ namespace Lab2
     /// </summary>
     public class Straight : Polynomial
     {
-        public Straight(decimal[] coefficients, bool ParabolaOrStraight)
+        public Straight(decimal[] coefficients, Point[] Points)
         {
             if (coefficients.Length == 2)
             {
                 this.coefficients = coefficients;
-                this.ParabolaOrStraight = ParabolaOrStraight;
+                this.Points = Points;
             }
         }
     }
@@ -169,6 +137,11 @@ namespace Lab2
     {
         public override Point[] BuiltPoints(decimal[] x)
         {
+            for (int i = 0; i < x.Length; i++)
+            {
+                Points[i].x = x[i];
+                Points[i].y = (decimal)Math.Sin((double)Points[i].x) + SinusoidFreeTerm;
+            }
             return Points;
         }
     }
@@ -179,10 +152,10 @@ namespace Lab2
     public class Sinusoid
         : TranscendentalCurves
     {
-        public Sinusoid(decimal SinusoidFreeTerm, bool ParabolaOrStraight)
+        public Sinusoid(decimal SinusoidFreeTerm, Point[] Points)
         {
             this.SinusoidFreeTerm = SinusoidFreeTerm;
-            this.ParabolaOrStraight = ParabolaOrStraight;
+            this.Points = Points;
         }
     }
 }
