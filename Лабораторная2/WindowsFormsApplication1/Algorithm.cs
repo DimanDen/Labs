@@ -75,9 +75,9 @@ namespace Lab2
         /// Метод, в котором проверяется принадлежит ли точка траектории
         /// </summary>
         /// <param name="Points"></param>
-        public decimal Collision(Point testPoint)
+        public bool Collision(Point testPoint)
         {
-            return BuiltPoints(new decimal[] {testPoint.x})[0].y;// == testPoint.y;
+            return BuiltPoints(new decimal[] {testPoint.x})[0].y == testPoint.y;
         }
     }
 

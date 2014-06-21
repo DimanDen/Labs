@@ -22,7 +22,7 @@ namespace Lab2
 
             Point[] Points1 = { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) };
             Point[] Points2 = { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) };
-            Point TestPoint =  new Point(0, 1);
+            Point TestPoint =  new Point(-213, 2);
             decimal[] x1 = { -2, -1, 0, 1, 2 };
             decimal[] coefficients1 = new decimal[3] { 1, 2, 3 };
             decimal[] coefficients2 = new decimal[2] { 1, 2 };
