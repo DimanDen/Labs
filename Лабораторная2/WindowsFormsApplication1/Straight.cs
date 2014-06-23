@@ -11,12 +11,11 @@ namespace Lab2
     /// </summary>
     public class Straight : Polynomial
     {
-        public Straight(decimal[] coefficients, Point[] Points)
+        public Straight(decimal[] coefficients)
         {
             if (coefficients.Length == 2)
             {
                 this.coefficients = coefficients;
-                this.Points = Points;
             }
         }
     }

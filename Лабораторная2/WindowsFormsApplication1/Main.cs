@@ -22,18 +22,18 @@ namespace Lab2
 
             Point[] Points1 = { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) };
             Point[] Points2 = { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) };
-            Point TestPoint =  new Point(-213, 2);
+            Point TestPoint =  new Point(5, 1);
             decimal[] x1 = { -2, -1, 0, 1, 2 };
             decimal[] coefficients1 = new decimal[3] { 1, 2, 3 };
             decimal[] coefficients2 = new decimal[2] { 1, 2 };
-            decimal[] coefficients3 = new decimal[1] { 1 };
             decimal SinusoidFreeTerm1 = 5.0m;
 
             string parabolal = "";
             string straightl = "";
             string sinusoidl = "";
 
-            Parabola parabola = new Parabola(coefficients1, Points1);
+            Parabola parabola = new Parabola(coefficients1);
+            parabola.Points = Points1;
             parabola.CreatePoints(x1);
             foreach (Point p in parabola.Points)
             {
@@ -44,7 +44,8 @@ namespace Lab2
             textBoxParabola.Text = "Парабола\n\r" + parabolal;
             textboxCollision.AppendText("\r\n" + TestPoint.ToString() + " - " + parabola.Collision(TestPoint).ToString());
 
-            Straight straight = new Straight(coefficients2, Points2);
+            Straight straight = new Straight(coefficients2);
+            straight.Points = Points2;
             straight.CreatePoints(x1);
             foreach (Point s in straight.Points)
             {
@@ -53,7 +54,8 @@ namespace Lab2
             }
             textBoxStraight.Text = "Прямая\n\r" + straightl;
 
-            Sinusoid sinusoid = new Sinusoid(SinusoidFreeTerm1, Points1, coefficients3);
+            Sinusoid sinusoid = new Sinusoid(SinusoidFreeTerm1);
+            sinusoid.Points = Points1;
             sinusoid.CreatePoints(x1);
             foreach (Point sin in sinusoid.Points)
             {

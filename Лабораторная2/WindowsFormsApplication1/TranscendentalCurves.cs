@@ -11,19 +11,12 @@ namespace Lab2
     /// </summary>
     public class TranscendentalCurves : Trajectory
     {
-        /// <summary>
-        /// Свободный член в формул подсчета значения функции синусойды
-        /// </summary>
-        public decimal SinusoidFreeTerm;
         public override Point[] BuiltPoints(decimal[] x)
         {
             for (int i = 0; i < x.Length; i++)
             {
-                for (int j = 0; j < coefficients.Length; j++)
-                {
-                    Points[i].x = x[i];
-                    Points[i].y = coefficients[j] * (decimal)Math.Sin((double)Points[i].x) + SinusoidFreeTerm;
-                }
+                Points[i].x = x[i];
+                Points[i].y = (decimal)Math.Sin((double)Points[i].x) + SinusoidFreeTerm;
             }
             return Points;
         }

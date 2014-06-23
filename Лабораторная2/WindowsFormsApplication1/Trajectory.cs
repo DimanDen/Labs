@@ -15,7 +15,12 @@ namespace Lab2
         /// Коэффициенты, используемые в подсчете значения функции с помощью многочлена
         /// </summary>
         public decimal[] coefficients;
+        /// <summary>
+        /// Свободный член в формул подсчета значения функции синусойды
+        /// </summary>
+        public decimal SinusoidFreeTerm;
         public Point[] Points;
+        public decimal[] x;
         /// <summary>
         /// Метод построения точек
         /// </summary>

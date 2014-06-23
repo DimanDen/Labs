@@ -11,12 +11,12 @@ namespace Lab2
     /// </summary>
     public class Parabola : Polynomial
     {
-        public Parabola(decimal[] coefficients, Point[] Points)
+        public Parabola(decimal[] coefficients)
         {
             if (coefficients.Length == 3)
             {
                 this.coefficients = coefficients;
-                this.Points = Points;
+                
             }
         }
     }
