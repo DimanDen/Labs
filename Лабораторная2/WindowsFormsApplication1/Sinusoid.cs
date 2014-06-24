@@ -13,10 +13,12 @@ namespace Lab2
         : TranscendentalCurves
     {
         /// <summary>
-        /// Конструктор синусоиды. В виде параметра поступает свободная компонента
+        /// Конструктор синусоиды
         /// </summary>
-        /// <param name="SinusoidFreeTerm"></param>
-        public Sinusoid(decimal SinusoidFreeTerm)
+        /// <param name="SinusoidFreeTerm">Свободный член</param>
+        /// <param name="x">Массив абсцисс</param>
+        public Sinusoid(decimal SinusoidFreeTerm, decimal[] x)
+            : base(SinusoidFreeTerm, x)
         {
             this.SinusoidFreeTerm = SinusoidFreeTerm;
         }

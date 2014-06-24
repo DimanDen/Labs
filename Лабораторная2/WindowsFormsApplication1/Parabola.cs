@@ -12,14 +12,16 @@ namespace Lab2
     public class Parabola : Polynomial
     {
         /// <summary>
-        /// Конструктор параболы. В виде параметра поступают коэффициенты для многочлена
+        /// Конструктор параболы
         /// </summary>
-        /// <param name="coefficients"></param>
-        public Parabola(decimal[] coefficients, decimal[] x) : base(coefficients, x)
+        /// <param name="coefficients">Коэффициенты многочлена</param>
+        /// <param name="x">Массив абсцисс</param>
+        public Parabola(decimal[] coefficients, decimal[] x)
+            : base(coefficients, x)
         {
             if (coefficients.Length != 3)
             {
-                throw new Exception("!!!");
+                throw new Exception("Ошибка в длине массива коэффициентов!!!");
             }
         }
     }

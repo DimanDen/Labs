@@ -11,6 +11,11 @@ namespace Lab2
     /// </summary>
     public class Polynomial : Trajectory
     {
+        /// <summary>
+        /// Базовый конструктор для параболы и прямой
+        /// </summary>
+        /// <param name="coefficients">Коэффициенты многочлена/param>
+        /// <param name="x">Массив асцисс</param>
         public Polynomial(decimal[] coefficients, decimal[] x)
         {
             this.coefficients = coefficients;

@@ -11,15 +11,17 @@ namespace Lab2
     /// </summary>
     public class Straight : Polynomial
     {
-        /// <summary>
-        /// Конструктор прямой. В виде параметра поступают коэффициенты для многочлена
-        /// </summary>
-        /// <param name="coefficients"></param>
-        public Straight(decimal[] coefficients)
+       /// <summary>
+       /// Конструктор прямой
+       /// </summary>
+       /// <param name="coefficients">Коэффициенты многочлена</param>
+       /// <param name="x">Массив абсцисс</param>
+        public Straight(decimal[] coefficients, decimal[] x)
+            : base(coefficients, x)
         {
-            if (coefficients.Length == 2)
+            if (coefficients.Length != 2)
             {
-                this.coefficients = coefficients;
+                throw new Exception("Ошибка в длине массива коэффициентов!!!");
             }
         }
     }

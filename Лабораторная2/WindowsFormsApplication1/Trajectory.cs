@@ -30,13 +30,13 @@ namespace Lab2
         /// <summary>
         /// Метод построения точек с помощью массива абсцисс
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="x">Массив абсцисс</param>
         /// <returns></returns>
         public abstract Point[] BuiltPoints(decimal[] x);
         /// <summary>
         /// Метод, позаволяющий работать с точками дальше
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="x">Массив абсцисс</param>
         public void CreatePoints(decimal[] x)
         {
             Points = BuiltPoints(x);
@@ -44,7 +44,7 @@ namespace Lab2
         /// <summary>
         /// Метод, который возвращает построенные точки
         /// </summary>
-        /// <param name="x"></param>
+        /// <param name="x">Массив абсцисс</param>
         /// <returns></returns>
         public Point[] GetPoints(decimal[] x)
         {
@@ -53,7 +53,7 @@ namespace Lab2
         /// <summary>
         /// Метод, в котором проверяется принадлежит ли точка траектории
         /// </summary>
-        /// <param name="Points"></param>
+        /// <param name="Points">Точки</param>
         public bool Collision(Point testPoint)
         {
             Point p = BuiltPoints(new decimal[] { testPoint.x })[0];

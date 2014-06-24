@@ -20,9 +20,7 @@ namespace Lab2
         {
             buttonStart.Click -= method1;
 
-            Point[] Points1 = { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) };
-            Point[] Points2 = { new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0), new Point(0, 0) };
-            Point TestPoint =  new Point(0, 1);
+            Point TestPoint =  new Point(-1, 2);
             decimal[] x1 = { -2, -1, 0, 1, 2 };
             decimal[] coefficients1 = new decimal[3] { 1, 2, 3 };
             decimal[] coefficients2 = new decimal[2] { 1, 2 };
@@ -33,8 +31,6 @@ namespace Lab2
             string sinusoidl = "";
 
             Parabola parabola = new Parabola(coefficients1, x1);
-            //parabola.Points = Points1;
-            //parabola.CreatePoints(x1);
             foreach (Point p in parabola.Points)
             {
                 chart1.Series[0].Points.AddXY(p.x, p.y);
@@ -42,28 +38,27 @@ namespace Lab2
             }
             parabola.Collision(TestPoint);
             textBoxParabola.Text = "Парабола\n\r" + parabolal;
-            textboxCollision.AppendText("\r\n" + TestPoint.ToString() + " - " + parabola.Collision(TestPoint).ToString());
+            textboxCollision.AppendText("\r\nПарабола: " + TestPoint.ToString() + " - " + parabola.Collision(TestPoint).ToString());
 
-            Straight straight = new Straight(coefficients2);
-            straight.Points = Points2;
-            straight.CreatePoints(x1);
+            Straight straight = new Straight(coefficients2, x1);
             foreach (Point s in straight.Points)
             {
                 chart1.Series[1].Points.AddXY(s.x, s.y);
                 straightl += "\r\n" + s.ToString();
             }
             textBoxStraight.Text = "Прямая\n\r" + straightl;
+            textboxCollision.AppendText("\r\nПрямая: " + TestPoint.ToString() + " - " + straight.Collision(TestPoint).ToString());
 
-            Sinusoid sinusoid = new Sinusoid(SinusoidFreeTerm1);
-            sinusoid.Points = Points1;
-            sinusoid.CreatePoints(x1);
+            Sinusoid sinusoid = new Sinusoid(SinusoidFreeTerm1, x1);
             foreach (Point sin in sinusoid.Points)
             {
                 chart1.Series[2].Points.AddXY(sin.x, sin.y);
                 sinusoidl += "\r\n" + sin.ToString();
             }
             textBoxSinusoid.Text = "Синусойда\n\r" + sinusoidl;
-            
+            textboxCollision.AppendText("\r\nСинусойда: " + TestPoint.ToString() + " - " + sinusoid.Collision(TestPoint).ToString());
+
+            chart1.Series[3].Points.AddXY(TestPoint.x, TestPoint.y);
         }
     }
 }
