@@ -15,11 +15,11 @@ namespace Lab2
         /// Конструктор параболы. В виде параметра поступают коэффициенты для многочлена
         /// </summary>
         /// <param name="coefficients"></param>
-        public Parabola(decimal[] coefficients)
+        public Parabola(decimal[] coefficients, decimal[] x) : base(coefficients, x)
         {
-            if (coefficients.Length == 3)
+            if (coefficients.Length != 3)
             {
-                this.coefficients = coefficients;
+                throw new Exception("!!!");
             }
         }
     }

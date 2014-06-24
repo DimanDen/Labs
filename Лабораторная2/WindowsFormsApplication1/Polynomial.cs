@@ -11,6 +11,14 @@ namespace Lab2
     /// </summary>
     public class Polynomial : Trajectory
     {
+        public Polynomial(decimal[] coefficients, decimal[] x)
+        {
+            this.coefficients = coefficients;
+            this.Points = this.BuiltPoints(x);
+        }
+
+        protected Polynomial()
+        { }
         /// <summary>
         /// Метод построения точек, специализированный под многочлен
         /// </summary>
@@ -18,11 +26,12 @@ namespace Lab2
         /// <returns></returns>
         public override Point[] BuiltPoints(decimal[] x)
         {
+            Points = new Point[x.Length];
             for (int i = 0; i < x.Length; i++)
             {
+                Points[i] = new Point(x[i], 0);
                 for (int j = 0; j < coefficients.Length; j++)
                 {
-                    Points[i].x = x[i];
                     Points[i].y = Points[i].y + coefficients[j] * (decimal)Math.Pow((double)Points[i].x, j);
                 }
             }

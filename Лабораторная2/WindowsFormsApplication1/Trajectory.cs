@@ -56,7 +56,8 @@ namespace Lab2
         /// <param name="Points"></param>
         public bool Collision(Point testPoint)
         {
-            return BuiltPoints(new decimal[] { testPoint.x })[0].y == testPoint.y;
+            Point p = BuiltPoints(new decimal[] { testPoint.x })[0];
+            return p.y == testPoint.y;
         }
     }
 }
