@@ -11,6 +11,11 @@ namespace Lab2
     /// </summary>
     public class Polynomial : Trajectory
     {
+        /// <summary>
+        /// Метод построения точек, специализированный под многочлен
+        /// </summary>
+        /// <param name="x"></param>
+        /// <returns></returns>
         public override Point[] BuiltPoints(decimal[] x)
         {
             for (int i = 0; i < x.Length; i++)

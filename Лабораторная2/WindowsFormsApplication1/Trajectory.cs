@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Lab2
 {
     /// <summary>
-    /// Класс, описывающий траекторию
+    /// Класс, описывающий траекторию в общем виде
     /// </summary>
     public abstract class Trajectory
     {
@@ -16,19 +16,25 @@ namespace Lab2
         /// </summary>
         public decimal[] coefficients;
         /// <summary>
-        /// Свободный член в формул подсчета значения функции синусойды
+        /// Свободный член в формулe подсчета значения функции синусойды
         /// </summary>
         public decimal SinusoidFreeTerm;
+        /// <summary>
+        /// Массив точек, по которым строится траектория
+        /// </summary>
         public Point[] Points;
+        /// <summary>
+        /// Массив абсцисс
+        /// </summary>
         public decimal[] x;
         /// <summary>
-        /// Метод построения точек
+        /// Метод построения точек с помощью массива абсцисс
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>
         public abstract Point[] BuiltPoints(decimal[] x);
         /// <summary>
-        /// Метод в котором высчитывается значение функции для траектории в виде многочлена и в виде синусойды
+        /// Метод, позаволяющий работать с точками дальше
         /// </summary>
         /// <param name="x"></param>
         public void CreatePoints(decimal[] x)
@@ -36,7 +42,7 @@ namespace Lab2
             Points = BuiltPoints(x);
         }
         /// <summary>
-        /// Метод, который позволяет получить точки
+        /// Метод, который возвращает построенные точки
         /// </summary>
         /// <param name="x"></param>
         /// <returns></returns>

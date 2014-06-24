@@ -11,12 +11,15 @@ namespace Lab2
     /// </summary>
     public class Parabola : Polynomial
     {
+        /// <summary>
+        /// Конструктор параболы. В виде параметра поступают коэффициенты для многочлена
+        /// </summary>
+        /// <param name="coefficients"></param>
         public Parabola(decimal[] coefficients)
         {
             if (coefficients.Length == 3)
             {
                 this.coefficients = coefficients;
-                
             }
         }
     }

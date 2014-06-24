@@ -11,6 +11,10 @@ namespace Lab2
     /// </summary>
     public class Straight : Polynomial
     {
+        /// <summary>
+        /// Конструктор прямой. В виде параметра поступают коэффициенты для многочлена
+        /// </summary>
+        /// <param name="coefficients"></param>
         public Straight(decimal[] coefficients)
         {
             if (coefficients.Length == 2)
