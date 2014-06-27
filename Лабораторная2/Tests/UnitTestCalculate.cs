@@ -3,15 +3,21 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Lab2
 {
+    /// <summary>
+    /// Проверка правильности подсчета значений функци
+    /// </summary>
     [TestClass]
     public class UnitTestCalculate
     {
+        //Входные параметры
         public decimal[] xTest = { -2, -1, 0, 1, 2 };
         decimal[] coefficients1 = new decimal[3] { 1, 2, 3 };
         decimal[] coefficients2 = new decimal[2] { 1, 2 };
         decimal SinusoidFreeTerm1 = 5.0m;
-        public bool ItsOK = true;
 
+        /// <summary>
+        /// Тест подсчета значений функции параболы
+        /// </summary>
         [TestMethod]
         public void TestMethodCalculateParabola()
         {
@@ -23,6 +29,9 @@ namespace Lab2
                 Math.Round(parabola.Points[1].x) == -1 && Math.Round(parabola.Points[1].y) == 2);
         }
 
+        /// <summary>
+        /// Тест подсчета значений функции прямой
+        /// </summary>
         [TestMethod]
         public void TestMethodCalculateStraight()
         {
@@ -34,6 +43,9 @@ namespace Lab2
                 Math.Round(straight.Points[1].x) == -1 && Math.Round(straight.Points[1].y) == -1);
         }
 
+        /// <summary>
+        /// Тест подсчета значений функции синусойды
+        /// </summary>
         [TestMethod]
         public void TestMethodCalculateSinusoid()
         {
