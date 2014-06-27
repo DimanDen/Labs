@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Lab2
 {
     /// <summary>
-    /// Проверка работы конструкторов и основных методов классов при определенных параметрах
+    /// Тест работы конструкторов и основных методов классов при определенных параметрах
     /// </summary>
     [TestClass]
     public class UnitTestInpuData
